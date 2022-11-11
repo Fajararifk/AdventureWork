@@ -1,0 +1,139 @@
+﻿@model AWork.Contracts.Dto.Production.ProductCategoryDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+<link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
+<h1>Edit</h1>
+@using (Html.BeginForm("Edit", "ProductCategoriesService", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(Model=>Model.ProductCategoryId)
+    <h4>ProductCategory</h4>
+    <div>
+        <table asp-action="Create" class="table">
+            <form  enctype="multipart/form-data" asp-action="Create">
+               
+                    <div class="form-group">
+                        <div asp-validation-summar="ModelOnly" class="text-danger"></div>
+                        <label asp-for="Name" class="control-label">Category Name</label>
+                        @Html.EditorFor(y=>y.Name,new{htmlAttributes =new {@class ="form-control",placeholder="New Category Name"}})
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                            @for (int i = 0; i < Model.ProductSubcategories.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                       @* @Html.EditorFor(x=>x.SubCategoryDtos[i].Name, new{htmlAttributes =new {@class ="form-control",placeholder="Subcategory Name",size="50"} })*@
+                                       @Html.EditorFor(x=>x.ProductSubCategoryDto[i].Name, new{htmlAttributes =new {@class ="form-control",placeholder="Subcategory Name",size="50"} })
+                                        
+                                   </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <table id="ExpTable">
+                            <tr>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                            @for (int i = 0; i < Model.ProductSubCategoryForCreateDto.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.EditorFor(x=>x.ProductSubCategoryForCreateDto[i].Name, new{htmlAttributes =new {@class ="form-control",placeholder="Subcategory Name",size="50"} })
+                                    </td>
+                                    <td>
+                                        <button id="btndummy-@i" type="button" class="btn btn-md invisible">Dummy</button>
+                                            <button id="btnadd-@i" type="button" class="btn btn btn-secondary visible" onclick="AddItem(this)" style="left:50%;position:center">Add</button>
+                                            <button id="btnremove-@i" type="button" class="btn btn alert-danger visible" onclick="DeleteItem(this)" style="left:-29%;position:center">Delete</button>
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                
+                <div class="col-12 btn-group">
+                    <div class="col-5 form-group text-right p-2">
+                        <a asp-action="Index" class="btn btn-secondary">&nbsp;Back&nbsp;</a>
+                    </div>
+                    <div class="col-5 form-group text-right p-2">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+        </table>
+        <input type="hidden" id="hdnLastIndex" value="0" />
+    </div>
+}
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+
+<script type="text/javascript">
+
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+
+
+    function DeleteItem(btn) {
+        $(btn).closest('tr').remove();
+    }
+
+
+
+    function AddItem(btn) {
+
+        var table = document.getElementById('ExpTable');
+        var rows = table.getElementsByTagName('tr');
+
+        var rowOuterHtml = rows[rows.length - 1].outerHTML;
+
+        var lastrowIdx = document.getElementById('hdnLastIndex').value;
+
+        var nextrowIdx = eval(lastrowIdx) + 1;
+
+        document.getElementById('hdnLastIndex').value = nextrowIdx;
+
+        rowOuterHtml = rowOuterHtml.replaceAll('_' + lastrowIdx + '_', '_' + nextrowIdx + '_');
+        rowOuterHtml = rowOuterHtml.replaceAll('[' + lastrowIdx + ']', '[' + nextrowIdx + ']');
+        rowOuterHtml = rowOuterHtml.replaceAll('-' + lastrowIdx, '-' + nextrowIdx);
+
+
+        var newRow = table.insertRow();
+        newRow.innerHTML = rowOuterHtml;
+
+
+
+        var btnAddID = btn.id;
+        var btnDeleteid = btnAddID.replaceAll('btnadd', 'btnremove');
+
+      var delbtn = document.getElementById(btnDeleteid);
+        delbtn.classList.add("visible");
+        delbtn.classList.remove("invisible");
+
+
+        var addbtn = document.getElementById(btnAddID);
+        addbtn.classList.remove("visible");
+        addbtn.classList.add("visible");
+
+    }
+
+</script>
+
+}

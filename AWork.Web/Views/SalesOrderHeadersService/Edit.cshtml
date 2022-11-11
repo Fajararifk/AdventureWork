@@ -1,0 +1,176 @@
+﻿@model AWork.Contracts.Dto.Sales.SalesOrderHeader.SalesOrderHeaderDto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<box-icon type='solid' name='cog'></box-icon>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAt9JREFUaEPtmf1RGzEQxZ8rCKmAUAGhAkgHdBA6gFQQqCDQAXRAByEVJFQAVACpIJkfc5qRZVm7knX+Gusvj0+3u28/3q50E234mmy4/doBWHUEe0bgVNJ3SZ8NUM+Svkm67wG+J4AnSZ+cRv2RdOTcW9zWE8C/SoO66O4iZDB8B6Aygu/bvRE4kXQs6U4SRRivPUnnki4rDWD/jaS35D3q6KukX5IeLJkeABj/MxJ0LelqUAzr1Boe24TxQR6OQN5FtOGLBcIDIMcuKCYSFmVaDgzPYSU8D4h4oeOgJMQCgHfxyioXPYMoZVcJAN7A+6lXlg2GaBOFtFbMIr4dimnZBuf0QR5nuQfzIkBu/14HyyMb6NzUytSaBwDWgX1a1suQs1BgUIhDkAfD7LcIHdgIVjIBpLRZo69YcIMgQPyoERrtnaHVXARamScb4jmGtqYo/Weq7+QAIJzwf6jwksfzqbiWSLgigCLSCO49dIAg571jdCqORuWpicehfmZGC6uRQV0AKUWjxfsBiBWFv4PhUHp2WQB46dVoZjW5nxph1QLN62MpCzwArDnfI6Nkw0LyPcoXUuCooYXkewAQxlINjJlC1EBxFrMAcLCgiEtCxixinEehMwtVFTE0Srf0zPvmzF5II+9NBiMJjnLRaMso0RIFi0JT3ESDRjY10G3lKNESgbgxcVAvLS4A5p6wjHfdowS5xi1Ey6ImMJBbhXicRh5p0zp2IG9mxN/aAw2e3+gjJQDgftKhZqxuSTnrHZoZaVd9qEdw6+HGMqrmefO1SlCSm9nxCv97zgseY5n38XIabfOsYY0SKE9pFZokMqHN87s1zXAE74dxhd/QbFhdrhYDCIBQ2LnLXeix9gaP8y2G5y53OUjxBWfmGiUNpycCnhRgjzUWj6J7ByBy68ZHwHvDAGZYxzOqm+nbM4X4zAqLWNQKNVL0a/eZ1fTWGBt6RmAM+0yZOwCmi0be8B9Os48xO1W88gAAAABJRU5ErkJggg==" />
+<hr />
+<div class="container p-3 my-3">
+    <div class="card">
+        <div class="card-body">
+
+            <form asp-action="Edit">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="SalesOrderId" />
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label asp-for="AccountNumber" class="control-label"></label>
+                        <input asp-for="AccountNumber" class="form-control" />
+                        <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label asp-for="CustomerId" class="control-label"></label>
+                        <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                        <span asp-validation-for="CustomerId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="SalesPersonId" class="control-label"></label>
+                        <select asp-for="SalesPersonId" class="form-control" asp-items="ViewBag.SalesPersonId"></select>
+                        <span asp-validation-for="SalesPersonId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="TerritoryId" class="control-label"></label>
+                        <select asp-for="TerritoryId" class="form-control" asp-items="ViewBag.TerritoryId"></select>
+                        <span asp-validation-for="TerritoryId" class="text-danger"></span>
+                    </div>
+                </div>
+                <br> 
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label asp-for="RevisionNumber" class="control-label"></label>
+                        <input asp-for="RevisionNumber" class="form-control" />
+                        <span asp-validation-for="RevisionNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                            <label asp-for="OrderDate" class="control-label"></label>
+                            <input asp-for="OrderDate" class="form-control" />
+                            <span asp-validation-for="OrderDate" class="text-danger"></span>
+                        
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="DueDate" class="control-label"></label>
+                        <input asp-for="DueDate" class="form-control" />
+                        <span asp-validation-for="DueDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="ShipDate" class="control-label"></label>
+                        <input asp-for="ShipDate" class="form-control" />
+                        <span asp-validation-for="ShipDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <br> 
+
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label asp-for="Status" class="control-label"></label>
+                        <input asp-for="Status" class="form-control" />
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="OnlineOrderFlag" class="control-label"></label>
+                        <input asp-for="OnlineOrderFlag" class="form-control" />
+                        <span asp-validation-for="OnlineOrderFlag" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="PurchaseOrderNumber" class="control-label"></label>
+                        <input asp-for="PurchaseOrderNumber" class="form-control" />
+                        <span asp-validation-for="PurchaseOrderNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-3">>
+                        <label asp-for="BillToAddressId" class="control-label"></label>
+                        <select asp-for="BillToAddressId" class="form-control" asp-items="ViewBag.BillToAddressId"></select>
+                        <span asp-validation-for="BillToAddressId" class="text-danger"></span>
+                    </div>
+                </div>
+                <br>
+                <div class="row g-3">
+                    <div class="col-md-3">
+                    <label asp-for="ShipToAddressId" class="control-label"></label>
+                    <select asp-for="ShipToAddressId" class="form-control" asp-items="ViewBag.ShipToAddressId"></select>
+                    <span asp-validation-for="ShipToAddressId" class="text-danger"></span>
+                </div>
+                    <div class="col-md-3">
+                    <label asp-for="ShipMethodId" class="control-label"></label>
+                    <select asp-for="ShipMethodId" class="form-control" asp-items="ViewBag.ShipMethodId"></select>
+                    <span asp-validation-for="ShipMethodId" class="text-danger"></span>
+                </div>
+                    <div class="col-md-3">
+                    <label asp-for="CreditCardId" class="control-label"></label>
+                    <select asp-for="CreditCardId" class="form-control" asp-items="ViewBag.CreditCardId"></select>
+                    <span asp-validation-for="CreditCardId" class="text-danger"></span>
+                </div>
+                    <div class="col-md-3">
+                    <label asp-for="CreditCardApprovalCode" class="control-label"></label>
+                    <input asp-for="CreditCardApprovalCode" class="form-control" />
+                    <span asp-validation-for="CreditCardApprovalCode" class="text-danger"></span>
+                </div>
+                </div>
+                
+                <br> 
+
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label asp-for="CurrencyRateId" class="control-label"></label>
+                        <select asp-for="CurrencyRateId" class="form-control" asp-items="ViewBag.CurrencyRateId"></select>
+                        <span asp-validation-for="CurrencyRateId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">>
+                        <label asp-for="SubTotal" class="control-label"></label>
+                        <input asp-for="SubTotal" class="form-control" />
+                        <span asp-validation-for="SubTotal" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="TaxAmt" class="control-label"></label>
+                        <input asp-for="TaxAmt" class="form-control" />
+                        <span asp-validation-for="TaxAmt" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="Freight" class="control-label"></label>
+                        <input asp-for="Freight" class="form-control" />
+                        <span asp-validation-for="Freight" class="text-danger"></span>
+                    </div>
+
+                </div>
+               <br>
+               <div class="row-g3">
+                    <div class="form-group">
+                        <label asp-for="Comment" class="control-label"></label>
+                        <input asp-for="Comment" class="form-control" />
+                        <span asp-validation-for="Comment" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Rowguid" class="control-label"></label>
+                        <input asp-for="Rowguid" class="form-control" />
+                        <span asp-validation-for="Rowguid" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ModifiedDate" class="control-label"></label>
+                        <input asp-for="ModifiedDate" class="form-control" />
+                        <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+               </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

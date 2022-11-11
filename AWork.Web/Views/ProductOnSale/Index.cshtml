@@ -1,0 +1,68 @@
+﻿@model X.PagedList.IPagedList<AWork.Contracts.Dto.Production.ProductDto>
+
+@using X.PagedList.Mvc.Core
+<link href="~/css/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product On Sale</h1>
+
+@using (Html.BeginForm("Index", "ProductOnSale", FormMethod.Get))
+{
+    <div class="input-group mb-1">
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new{@class="form-control", @placeholder="Loking For?"})
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+    </div>
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-md-6 col-lg-4">
+        <a asp-action="Details" asp-route-id="@item.ProductId">
+            <div class="card mb-4">
+                <img class="card-img-top" src="@Url.Content("~/Resources/images/" + item.ProductProductPhotos.FirstOrDefault().ProductPhoto.ThumbnailPhotoFileName)" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">
+                        <center><b>@Html.DisplayFor(modelItem => item.ProductModel)</b></center>
+                    </p>
+                    <p class="card-text">
+                        @Html.LabelFor(modelItem => item.ProductId, htmlAttributes : new{@class="form-label"}) :
+                        @Html.DisplayFor(modelItem => item.ProductId)
+                        <br>
+                        @Html.LabelFor(modelItem => item.SafetyStockLevel, htmlAttributes : new{@class="form-label"}) :
+                        @Html.DisplayFor(modelItem => item.SafetyStockLevel)
+                        <br>
+                        @Html.LabelFor(modelItem => item.ListPrice, htmlAttributes : new{@class="form-label"}) :
+                        @Html.DisplayFor(modelItem => item.ListPrice)
+
+                        <br> <br>
+                        @*<button type="submit" class="btn btn-primary">
+                            <box-icon type='solid' name='cart-add'> Detail</box-icon>
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAAAAXNSR0IArs4c6QAAAgdJREFUWEftlzsvREEYhp/1B1waOhKFQoFSxQ+QIJGIKNCKglKFX4BConJpNBoKNTodEhGFBIkIGvwC8srMZs7ZOXvmnL1ki51kk82c7/Kc7/vmnd0CDbIKDcJBEyTeCbcig8CmY/AMXACH9WifCzIKnHuSLgAHtYYJAfkG2usJEs91AoybzZpXpdypcVt1AwzVsippx1cD220ABCKgmqw0kOXYSaomRKTKaSBtgKrSWk0CJ1YxfxqIfHR05wJAXgy0TKVJafC3xu4/dAiIgl4HgGwA68ZOQjiS4rMCbFmbEBDZhgTOCiJtkkYFV0SG88C+5w0vDaSFFbC17zHf1zx+p8CEux9aEfmIPt53twpJnfj1PJgEJJjFlQVE/Y+/XR6QH0CnMbKygKjUTzF/tcK2w22TWmmF0A6wdd0GpE+5QeTo3j/xWKHD6lXoLBVR4qSfCnoWAhLRjrwzYv3c+8eNpX19tKQ9JXMARLSjUpBK7p+IdlQKojfVgA4kndeEfe+QWtusM5Ixd7h5XpAucxFKE3bLpOsFpoF3YK8cVl6QB6DPBD4CZj1JOoB7oNM82wGWkmDygOhWtSKmuJLwFk+CKeDY2f90oErM84CoLW/OT4grYNgD0g/cOftnwFg1K6JYCrgIfJn75zEhwQygfwCvwCrwUW2Q8OMQaJmnNYGhs5k1QeL1+gMxwVYjk9JcAwAAAABJRU5ErkJggg==" />
+
+                        </button>*@
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+}
+
+
+<div>
+    Page Size : @Html.DropDownList("PageSize",
+    ViewBag.PageSize as SelectList,
+    new{
+    @placeholder="Page Size",
+    @onchange="getPagedSize(this.value)"
+    }
+    )
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new{page, PageSize = ViewBag.psize, currentFilter = ViewBag.CurrentFilter, sortOrder = ViewBag.CurrentSort}))
+
+<script>
+    function getPagedSize(value) {
+        document.location.href = "/ProductOnSale?&PageSize=" + value + "&currentFilter=@ViewBag.CurrentFilter&sortOrder=@ViewBag.CurrentSort";
+    }
+</script>

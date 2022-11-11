@@ -1,0 +1,12 @@
+D:\FinalFix\AWork.Domain\bin\Debug\net5.0\AWork.Domain.deps.json
+D:\FinalFix\AWork.Domain\bin\Debug\net5.0\AWork.Domain.dll
+D:\FinalFix\AWork.Domain\bin\Debug\net5.0\AWork.Domain.pdb
+D:\FinalFix\AWork.Domain\obj\Debug\net5.0\AWork.Domain.csproj.AssemblyReference.cache
+D:\FinalFix\AWork.Domain\obj\Debug\net5.0\AWork.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\FinalFix\AWork.Domain\obj\Debug\net5.0\AWork.Domain.AssemblyInfoInputs.cache
+D:\FinalFix\AWork.Domain\obj\Debug\net5.0\AWork.Domain.AssemblyInfo.cs
+D:\FinalFix\AWork.Domain\obj\Debug\net5.0\AWork.Domain.csproj.CoreCompileInputs.cache
+D:\FinalFix\AWork.Domain\obj\Debug\net5.0\AWork.Domain.dll
+D:\FinalFix\AWork.Domain\obj\Debug\net5.0\refint\AWork.Domain.dll
+D:\FinalFix\AWork.Domain\obj\Debug\net5.0\AWork.Domain.pdb
+D:\FinalFix\AWork.Domain\obj\Debug\net5.0\ref\AWork.Domain.dll
